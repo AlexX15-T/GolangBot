@@ -13,7 +13,7 @@ type Config struct{
 }
 
 
-func (a *Config) GetConfigerror() error {
+func GetConfig(a *Config) error {
 	file, err := ioutil.ReadFile("./config.json")
 
 	if err != nil {
@@ -21,14 +21,12 @@ func (a *Config) GetConfigerror() error {
 		return err
 	}
 
-	f.Println(string(file))
-
 	err = json.Unmarshal(file, &a)
 
 	if err != nil {
 		f.Println(err.Error())
 		return err
 	}
-
+	
 	return nil
 }
